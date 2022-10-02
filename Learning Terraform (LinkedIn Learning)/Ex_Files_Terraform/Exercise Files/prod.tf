@@ -74,7 +74,7 @@ resource "aws_security_group" "prod_web" {
   }
 }
 
-module "web_app" {
+module "web_app1" {
   source = "./modules/web_app"
 
   web_image_id         = var.web_image_id
