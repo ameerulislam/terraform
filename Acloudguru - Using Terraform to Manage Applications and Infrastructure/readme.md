@@ -59,3 +59,30 @@ There are some resource types that provide special timeouts, nested block argume
 - Destroy
 - Update in-place
 - Destroy and re-create
+
+### Input Variables
+The name of a variable can be any valid identifier except for source, version, providers, count, for_each, lifecycle, depends_on and locals
+These are reserved KWs
+
+#### Optional Arguments for variable
+default
+type
+description
+validation
+sensetive
+
+#### Type Constraints
+string
+number
+bool
+
+#### Type Constructors
+list(<type>)
+set(<type>)
+map(<type>)
+object({<attribute> = <type>, ...})
+tuple([<type>, ...])
+
+Value can be accessed from an expression, such as var.<var_name>.
+
+a value assigned to a variable can only be accessed in an expression within the module it was declared
