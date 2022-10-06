@@ -106,3 +106,88 @@ Local values are like a function's temporary local variables
 when a local value is declared, you can reference to it in expressions as local.<name>.
 
 Local values can only be accessed in expressions within the module where they were declared.
+
+## Modules
+A module is a container for multiple resources that are used together.
+A module can consist of a collection of .tf as well as .tf.json files kept together in a directory.
+
+Three types of modules
+- Root Modules - You need at least one root module.
+- Child Modules - Modules that are called by the root module.
+- Published Modules - Modules loaded from a private or public registry.
+
+example
+module "servers" {
+    source = "./app-cluster"
+    
+    servers = 5
+}
+
+Here a root module that includes a module block is calling a child module. The label after the module keyword is a local name that can be used to refer to the module.
+
+4 Module Argument Types
+
+1. The source argument is required for all modules.
+2. The version argument is recommended for modules from a registry.
+3. The input variable arguments.
+4. The meta-arguments like 
+    - for_each
+    - depends_on
+    - count
+    - providers
+    - lifecycle (planned)
+
+Calling module cannot access child module attributes directly. 
+Child modules can declare output values to selectively export values which are accessible by the calling modules.
+
+When you split code into other child modules, or when moving resource blocks between modules, you can cause Terraform to see the new location of the module block as an entirely different resource. Use the 
+terraofrm state mv
+command to inform Terraform that the child module block has moved to a different module.
+
+### Taint 
+The Terraform Taint command allows you to manually flag a resource as tainted, which means it will be destroyed and recreated on the next terraform apply. Terraform untaint allows you to remove that tainted condition from the resource.
+
+The taint command can be used to taint specific resources within a module.
+
+example
+terraoform taint module.salt_master.aws_instance.salt_master
+
+It is not possible to taint an entire module. Instead, each resource within the module must be tainted seperately.
+
+### module source type
+8 types
+- Local Paths
+- Terraform Registry
+- GitHub
+- Bitbucket
+- Generic Git, Mercurial repositories
+- HTTP URLs
+- S3 buckets
+- GCS buckets
+
+### Difference between Expressions and Functions
+Expressions are used to reference / compute values within a configuration
+
+Functions are used to transform and combine values within expressions
+
+Expressions
+The simplest expressions are literal values, like ACG or 1, but the Terraform language also allows more complex expressions, such as references to data exported by resources and a number of built-in functions.
+### 7 type values
+- string
+- number
+- bool
+- list/tuple
+- map/object
+- null
+### 7 Types of named values available in Terraform
+- Resources
+- Input Variables
+- Local Values
+- Child Module Outputs
+- Data Sources
+- Filesystem and workspace info
+- Block-local Values
+
+### Conditional expressions
+condition ? True_val : False_val
+
