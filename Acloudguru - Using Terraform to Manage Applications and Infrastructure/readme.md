@@ -94,3 +94,15 @@ input_variable_order
 - A child module can use them to expose a subset of resource attributes to the parent module.
 - A root module can use them to print values in the CLI
 - Root module outputs can be accessed by other configurations via the terraform_remote_state data source
+
+optional Arguments for variable Declaration
+- description
+- sensetive
+- depends_on
+
+### Local variables
+Local values are like a function's temporary local variables
+
+when a local value is declared, you can reference to it in expressions as local.<name>.
+
+Local values can only be accessed in expressions within the module where they were declared.
