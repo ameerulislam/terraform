@@ -65,11 +65,11 @@ The name of a variable can be any valid identifier except for source, version, p
 These are reserved KWs
 
 #### Optional Arguments for variable
-default
-type
-description
-validation
-sensetive
+default (makes the variable optional)
+type (acceptable type)
+description (input variable doc)
+validation (validation rules in addition to type constraints)
+sensetive (Limits the terraform UI output)
 
 #### Type Constraints
 string
@@ -86,3 +86,11 @@ tuple([<type>, ...])
 Value can be accessed from an expression, such as var.<var_name>.
 
 a value assigned to a variable can only be accessed in an expression within the module it was declared
+
+input_variable_order
+![Input Variable order](input_variable_order.png "Input Variable")
+
+### Output Variabls
+- A child module can use them to expose a subset of resource attributes to the parent module.
+- A root module can use them to print values in the CLI
+- Root module outputs can be accessed by other configurations via the terraform_remote_state data source
