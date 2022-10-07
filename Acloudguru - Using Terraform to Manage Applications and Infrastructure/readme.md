@@ -191,3 +191,21 @@ The simplest expressions are literal values, like ACG or 1, but the Terraform la
 ### Conditional expressions
 condition ? True_val : False_val
 
+### VCS (Version control service)
+1. GitHub.com
+2. GitHub.com(OAuth)
+3. GitHub Enterprise
+4. GitLab.com
+5. GitLab EE and CE
+6. Bitbucket Cloud
+7. Bitbucket Server
+8. Azure DevOps Server
+9. Azure devOps Services
+
+If your VCS is not supported you can build integration via API diven run workflow
+
+To use VCS congis, Terraform Cloud needs the following:
+
+- Access a list of repositories
+- Register webhooks with your CVS provider
+- Download the contents of a repository at a specific commit.
