@@ -209,3 +209,9 @@ To use VCS congis, Terraform Cloud needs the following:
 - Access a list of repositories
 - Register webhooks with your CVS provider
 - Download the contents of a repository at a specific commit.
+### workspace in cloud
+Workspaces are a collection of infrastructure.
+
+- When run locally, Terraform manages each collection of infrastructure with a persistent working directory, which contains a configuration, state data, and variables.
+
+- Terraform cloud manages infrastructure collections with workspaces instead of directories.
